@@ -147,5 +147,13 @@ uvicorn app:app --host 0.0.0.0 --port $PORT
 
 - Set `GROQ_API_KEY` in the backend deploy environment.
 - Set `VITE_API_URL` in the frontend deploy environment to your deployed backend URL.
+
+## Streamlit Cloud Deployment
+
+This repository also includes `streamlit_app.py` for Streamlit Community Cloud.
+
+- Main file path: `streamlit_app.py`
+- Python requirements file: `requirements.txt`
+- Add `GROQ_API_KEY` in Streamlit app secrets.
 # bella-vista-chatbot
 # New-bella-vista-chatbot
