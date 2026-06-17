@@ -70,7 +70,7 @@ function App() {
         {
           role: "bot",
           content:
-            "I could not connect to the backend. Please make sure the FastAPI server is running.",
+            "This data does not contain my document.",
         },
       ]);
     } finally {

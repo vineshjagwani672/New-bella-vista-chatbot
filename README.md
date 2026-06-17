@@ -70,10 +70,11 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Add your Google Gemini API key in `backend/.env`:
+4. Add your Groq API key in `backend/.env`:
 
 ```env
-GOOGLE_API_KEY=your_google_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_MODEL=llama-3.3-70b-versatile
 ```
 
 5. Build the FAISS vector database:
@@ -134,5 +135,17 @@ Response:
 - The backend always uses the preloaded PDF from `backend/data`.
 - Run `python3 ingest.py` once before chatting.
 - The assistant answers only from the PDF context.
+
+## Deployment Notes
+
+- Deploy the React frontend from the `frontend` folder.
+- Deploy the FastAPI backend from the `backend` folder with start command:
+
+```bash
+uvicorn app:app --host 0.0.0.0 --port $PORT
+```
+
+- Set `GROQ_API_KEY` in the backend deploy environment.
+- Set `VITE_API_URL` in the frontend deploy environment to your deployed backend URL.
 # bella-vista-chatbot
 # New-bella-vista-chatbot

@@ -4,12 +4,10 @@ backend/.env
 
 node_modules/
 frontend/node_modules/
+frontend/dist/
 
 venv/
 backend/venv/
 
 __pycache__/
-*.pycbackend/.env
-.env
-.env
-backend/.env
+*.pyc

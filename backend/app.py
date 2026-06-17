@@ -3,10 +3,10 @@ import re
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-import google.generativeai as genai
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from groq import Groq
 from langchain_community.vectorstores import FAISS
 from pydantic import BaseModel, Field as PydanticField
 from pypdf import PdfReader
@@ -18,8 +18,6 @@ from ingest import PDF_PATH, VECTORSTORE_DIR, ingest_pdf
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-GOOGLE_MODEL = os.getenv("GOOGLE_MODEL", "gemini-2.0-flash")
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
 NOT_FOUND_MESSAGE = "I could not find that information in the Bella Vista knowledge base."
 MIN_KEYWORD_MATCHES = 1
@@ -114,8 +112,9 @@ Answer:
 
 
 def validate_api_key() -> None:
-    if not GOOGLE_API_KEY or GOOGLE_API_KEY == "your_google_api_key_here":
-        raise RuntimeError("GOOGLE_API_KEY is missing or still uses the placeholder value in backend/.env.")
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    if not groq_api_key or groq_api_key == "your_groq_api_key_here":
+        raise RuntimeError("GROQ_API_KEY is missing or still uses the placeholder value in backend/.env.")
 
 
 def is_greeting(question: str) -> bool:
